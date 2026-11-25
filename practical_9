@@ -1,0 +1,94 @@
+# Python Practical 9
+# Let's Clean Data
+# Name: Adarsh Patyal
+# Course: B.Tech CSE (AI & ML)
+# Semester: 3
+
+
+# Problem 1: Zipper file
+
+def zipper_file(filename, strings):
+    """
+    Write consecutive pairs of strings into a file.
+    Each pair is joined together and written on a separate line.
+
+    Example:
+    ["A", "B", "C", "D"]
+
+    File contains:
+    AB
+    CD
+    """
+
+    with open(filename, "w", encoding="utf-8") as file:
+        for i in range(0, len(strings), 2):
+            zipped_string = strings[i] + strings[i + 1]
+            file.write(zipped_string + "\n")
+
+
+# Problem 2: Reformat dates
+
+def reformat_date(dates):
+    """
+    Convert dates from MM/DD/YYYY format into:
+    'Office Hours on Month DD, YYYY'
+
+    Example:
+    "03/09/2026" becomes
+    "Office Hours on March 09, 2026"
+    """
+
+    month_names = {
+        "01": "January",
+        "02": "February",
+        "03": "March",
+        "04": "April",
+        "05": "May",
+        "06": "June",
+        "07": "July",
+        "08": "August",
+        "09": "September",
+        "10": "October",
+        "11": "November",
+        "12": "December"
+    }
+
+    formatted_dates = []
+
+    for date in dates:
+        month, day, year = date.split("/")
+
+        sentence = (
+            "Office Hours on "
+            + month_names[month]
+            + " "
+            + day
+            + ", "
+            + year
+        )
+
+        formatted_dates.append(sentence)
+
+    return formatted_dates
+
+
+# Test for Problem 2
+
+date_list = ["03/09/2026", "11/05/2026", "01/21/2025"]
+
+result = reformat_date(date_list)
+
+print("\nProblem 2: Reformatted dates")
+
+for item in result:
+    print(item)
+
+
+# Test for Problem 1
+
+words = ["Good", "Morning", "Python", "Assignment"]
+
+zipper_file("zipped_output.txt", words)
+
+print("\nProblem 1: Zipper file created successfully.")
+print("Check the file named zipped_output.txt.")
